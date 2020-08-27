@@ -1,0 +1,116 @@
+$tablegradient: linear-gradient(180deg,#303a4f,#2a3345);
+$tablebordercolor: #2b3447;
+
+#content {
+    .table {
+        &.table-dark {
+            background: $tablegradient;
+
+            thead {
+                tr {
+                    th {
+                        background: $tablegradient;
+                        font-weight: normal;
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            th,
+            td {
+                border-color: $tablebordercolor;
+            }
+
+            th,
+            td {
+                cursor: default;
+                // white-space: nowrap;
+
+                &::selection {
+                    background: transparent;
+                }
+            }
+
+            td {
+                img {
+                    &.flag {
+                        box-shadow: 0 0 15px #212121;
+                        width: 30px;
+                    }
+                }
+            }
+
+            .actions {
+                position: relative;
+                display: flex;
+
+                .action {
+                    cursor: pointer;
+
+                    &[data-action="actions-trigger"] {
+                        margin-top: 0 !important;
+
+                        &.active + .d-none {
+                            @include media-breakpoint-down(md) {
+                                position: absolute;
+                                top: -5px;
+                                right: 65px;
+                                display: flex !important;
+                                justify-content: center;
+                                padding: 10px;
+                                background: #262d3d;
+                                box-shadow: 0 0 5px #000;
+    
+                                &:after {
+                                    content: " ";
+                                    width: 0;
+                                    height: 0;
+                                    border-style: solid;
+                                    border-width: 17.5px 0 17.5px 20px;
+                                    border-color: transparent transparent transparent #262d3d;
+                                    position: absolute;
+                                    right: -20px;
+                                    top: 6px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.md-form {
+    input {
+        &.form-control {
+            &:read-only {
+                color: #495057;
+            }
+        }
+    }
+
+    .ck + label {
+        transform: translateY(-25px);
+    }
+}
+
+.ck-editor__editable_inline {
+    min-height: 150px;
+}
+
+.ck-content {
+    strong {
+        font-weight: 900 !important;
+    }
+}
+
+.cropper-container {
+    margin: 30px 0 !important;
+}
+
+#modal-new_contentelement {
+    .cropper-container {
+        margin: 0 -1rem !important;
+    }
+}

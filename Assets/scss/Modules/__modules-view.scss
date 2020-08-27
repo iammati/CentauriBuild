@@ -1,0 +1,11 @@
+section {
+    &[id^="module_"] {
+        h3 {
+            &#title {
+                cursor: default;
+                user-select: none;
+                pointer-events: none;
+            }
+        }
+    }
+}

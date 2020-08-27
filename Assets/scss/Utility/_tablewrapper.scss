@@ -1,0 +1,12 @@
+.table-wrapper {
+    @include media-breakpoint-down(md) {
+        display: block;
+        overflow-x: auto;
+        margin-left: -15px;
+        width: calc(100% + 30px);
+
+        table {
+            margin-bottom: 0;
+        }
+    }
+}

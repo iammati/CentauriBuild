@@ -1,0 +1,117 @@
+#ci-forms-tabs {
+    ul {
+        li {
+            width: calc(100% - 30px);
+            border-radius: 0;
+            border: 1px solid $defaultBgColor;
+
+            &.inactive,
+            &.active {
+                width: 60px !important;
+                padding: 3px !important;
+                left: 10px;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                max-width: 70px;
+                white-space: nowrap;
+                margin-top: 0 !important;
+            }
+
+            &.inactive {
+                background-color: white;
+                color: $defaultBgColor;
+            }
+        }
+    }
+}
+
+#ci-forms-fields,
+#ci-forms-currentfields {
+    .ci-field {
+        &[data-htmltype="HTML"] {
+            &[data-type="row"] {
+                & > label {
+                    top: -10px;
+                }
+
+                & > .row {
+                    background-color: white;
+                    padding: 10px;
+                    min-height: 45px;
+                    margin: 0;
+                }
+            }
+        }
+
+        [disabled] {
+            background-color: white !important;
+        }
+    }
+}
+
+#ci-forms-fields {
+    .fields {
+        &:not(.active) {
+            display: none;
+        }
+
+        [readonly] {
+            pointer-events: none;
+        }
+    }
+}
+
+#ci-forms-currentfields {
+    .row {
+        .ci-field {
+            margin-bottom: 25px !important;
+        }
+    }
+
+    .ci-field {
+        cursor: pointer;
+
+        &.active {
+            &.is-html,
+            & > input,
+            & > textarea {
+                border-bottom: thick solid #4285f4 !important;
+            }
+        }
+
+        &[data-type="TextTag"] {
+            box-shadow: none !important;
+        }
+    }
+}
+
+#ci-forms-fields,
+#ci-forms-currentfields {
+    .ci-field {
+        background: white;
+    }
+}
+
+#ci-forms-fields {
+    .ci-field {
+        &[data-type="TextTag"] {
+            padding: 10px;
+            margin-bottom: 25px !important;
+        }
+    }
+}
+
+#ci-forms-fieldconfig {
+    .row-buttons {
+        position: absolute;
+        bottom: 0;
+        left: 15px;
+        width: 100%;
+
+        button {
+            border-radius: 0 !important;
+        }
+    }
+}

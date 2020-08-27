@@ -1,0 +1,15 @@
+#editor {
+    .field {
+        &.radio {
+            &.newpage-pagetype {
+                display: flex;
+                margin-bottom: 35px;
+
+                & > .form-check {
+                    padding-left: 0;
+                    margin-right: 15px;
+                }
+            }
+        }
+    }
+}

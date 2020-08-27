@@ -1,0 +1,8 @@
+#module_dashboard {
+    a {
+        &[data-module="true"] {
+            display: block;
+            transition: .1s;
+        }
+    }
+}

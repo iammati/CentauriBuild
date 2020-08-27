@@ -1,0 +1,10 @@
+.sortable-elements,
+.accordions.inline-records {
+    .content-element,
+    .accordion {
+        transition-property: transform;
+        transition-duration: 0.2s;
+        transition-timing-function: cubic-bezier(0.26, 0.03, 0, 0.99);
+        transition-delay: 0s;
+    }
+}

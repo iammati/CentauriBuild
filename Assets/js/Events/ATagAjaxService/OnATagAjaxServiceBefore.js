@@ -1,0 +1,3 @@
+Centauri.Events.OnATagAjaxServiceBefore = () => {
+    // 
+};

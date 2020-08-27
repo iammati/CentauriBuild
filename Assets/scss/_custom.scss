@@ -1,0 +1,36 @@
+div.ci-textarea {
+    border-bottom: 1px solid #ccc !important;
+    border: unset !important;
+    box-shadow: 0 1px 0 0 #ccc !important;
+
+    &:focus-within {
+        border-bottom: 1px solid #4285f4 !important;
+        box-shadow: 0 1px 0 0 #4285f4 !important;
+    }
+}
+
+.content-element.hidden {
+    background-color: #eee !important;
+    opacity: .66;
+    transition: .3s;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.ci-field {
+    &[data-renderas="button"] {
+        display: flex;
+        
+        button {
+            padding: 10px 15px;
+            margin: 10px 0;
+        }
+
+        input {
+            margin-top: 10px;
+            padding-left: 10px;
+        }
+    }
+}

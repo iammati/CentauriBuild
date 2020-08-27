@@ -1,0 +1,30 @@
+#modal-new_contentelement {
+    .element {
+        .top {
+            color: #212529;
+            cursor: pointer;
+            padding: 15px;
+        }
+
+        .bottom {
+            padding: 15px;
+            border-top: 1px solid #dedede;
+
+            & > div:first-child {
+                margin-top: 0 !important;
+            }
+
+            a {
+                &.create-new-inline {
+                    margin-left: 5px;
+                }
+            }
+
+            .accordion {
+                margin-top: 5px;
+                margin-left: 5px;
+                width: calc(100% - 10px);
+            }
+        }
+    }
+}

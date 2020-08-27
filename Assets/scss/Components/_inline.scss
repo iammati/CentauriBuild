@@ -1,0 +1,72 @@
+.accordions {
+    &.inline-records {
+        & > label {
+            &:not([for]) {
+                display: block;
+                margin-bottom: 0;
+                position: relative;
+                transform: translateY(0);
+                font-weight: 100 !important;
+                cursor: default;
+            }
+        }
+
+        & > a {
+            &.create-new-inline {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+        }
+
+        .accordion {
+            &:not(.active) {
+                & > .top {
+                    overflow: hidden;
+                }
+            }
+
+            & > .top {
+                position: relative;
+                padding: 1rem;
+                background-color: #fff;
+                cursor: pointer;
+
+                .buttons-center,
+                .buttons-right {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    height: 100%;
+                    align-items: center;
+                    display: flex;
+                    transition: .66s cubic-bezier(1, -0.09, 0, 1.16);
+
+                    button {
+                        &.btn-floating {
+                            width: 40px;
+                            height: 40px;
+
+                            &[data-trigger="sortInlineElementBySorting"] {
+                                cursor: move;
+                            }
+
+                            i {
+                                width: 100%;
+                                line-height: inherit;
+                            }
+                        }
+                    }
+                }
+
+                .buttons-center {
+                    right: 0;
+                    justify-content: center;
+                }
+            }
+
+            & > .bottom {
+                padding: 0 1rem 1rem;
+            }
+        }
+    }
+}

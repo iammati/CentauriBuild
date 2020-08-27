@@ -1,0 +1,195 @@
+#dashboard {
+    position: relative;
+    min-width: 300px;
+    background: linear-gradient(180deg, #303a4f, #2a3345);
+    transition: width .5s cubic-bezier(.5, .25, .015, 1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding-top: 1rem;
+    z-index: 3;
+    transition: .3s margin-left;
+
+    @include media-breakpoint-down(md) {
+        margin-left: -300px;
+        
+        &.active {
+            margin-left: 0;
+
+            .hamburger {
+                display: none;
+            }
+        }
+
+        .hamburger {
+            position: fixed;
+            top: 85px;
+            left: 0;
+            width: 45px;
+            height: 45px;
+            background: #2f394e;
+            cursor: pointer;
+            transition: .3s margin-left;
+
+            &.active {
+                margin-left: 300px;
+
+                .hamburger-box {
+                    .hamburger-inner {
+                        transition-delay: 75ms;
+                        transform: translate3d(0,10px,0) rotate(135deg);
+
+                        &:before,
+                        &:after {
+                            background-color: white;
+                        }
+
+                        &:before {
+                            transition-delay: 0s;
+                            opacity: 0;
+                        }
+
+                        &:after {
+                            transition-delay: 75ms;
+                            transform: translate3d(0,-20px,0) rotate(-270deg);
+                        }
+                    }
+                }
+            }
+
+            .hamburger-box {
+                position: relative;
+                top: 8px;
+                left: 5px;
+
+                .hamburger-inner {
+                    position: relative;
+                    top: 2px;
+                    width: 35px;
+                    height: 4px;
+                    transition-timing-function: cubic-bezier(.68,-.55,.265,1.55);
+                    transition-duration: .275s;
+                    transition-property: transform;
+                    border-radius: 4px;
+                    background-color: #fff;
+                    display: block;
+
+                    &:before,
+                    &:after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        width: 35px;
+                        height: 4px;
+                        border-radius: 4px;
+                        background-color: #fff;
+                    }
+    
+                    &:before {
+                        top: 10px;
+                        transition: opacity .125s ease .275s;
+                    }
+    
+                    &:after {
+                        top: 20px;
+                        transition: transform .275s cubic-bezier(.68,-.55,.265,1.55);
+                    }
+                }
+            }
+        }
+    }
+
+    .logo-view {
+        span,
+        small {
+            text-shadow: 0 0 15px #000;
+        }
+
+        span {
+            font-family: "Nanum Myeongjo";
+        }
+
+        small {
+            color: #d1d9e0;
+            font-size: 70%;
+            position: relative;
+            top: -5px;
+        }
+
+        i {
+            &.fas {
+                &.fa-rocket {
+                    position: absolute;
+                    margin-left: 5px;
+                    margin-top: -2.5px;
+                    font-size: .66em;
+                    text-shadow: 0 0 15px #000;
+                }
+            }
+        }
+    }
+
+    #modules {
+        height: calc(100% - 110px);
+        overflow-y: auto;
+
+        span {
+            &.group {
+                cursor: default;
+                padding-left: 20px;
+                text-transform: uppercase;
+                font-size: 13px;
+                font-weight: bold;
+                margin: 35px 0 10px;
+                display: block;
+
+                &::selection {
+                    pointer-events: none;
+                }
+            }
+        }
+
+        .module {
+            display: flex;
+            padding: 0 5px;
+
+            &:hover,
+            &.active {
+                background: #364159;
+                cursor: default;
+            }
+
+            &:not(.active) {
+                cursor: pointer;
+            }
+
+            .icon-view {
+                margin: 10px 15px;
+                width: 15px;
+                text-align: center;
+            }
+
+            .text-view {
+                margin: 10px;
+            }
+
+            &[data-module-id="notifications"] {
+                .icon-view {
+                    span {
+                        position: absolute;
+                        margin-top: -10px;
+                        margin-left: 5px;
+                        font-size: 12px;
+                        z-index: 1;
+                        background: #ff3547;
+                        border-radius: 50%;
+                        width: 20px;
+                        height: 20px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

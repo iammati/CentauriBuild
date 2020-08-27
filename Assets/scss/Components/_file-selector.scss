@@ -1,0 +1,61 @@
+#file-selector {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    background: white;
+    z-index: 99999;
+    box-shadow: 0 0 15px #aaa;
+    transition: .66s cubic-bezier(1, -0.5, 0.25, 1.42);
+
+    &.inactive {
+        right: -400px;
+    }
+
+    .items {
+        height: calc(100% - 170px);
+        overflow-y: auto;
+
+        .item {
+            margin: 15px;
+
+            &.selected {
+                .wrapper {
+                    position: relative;
+                    transform: scale(.8);
+
+                    &:after {
+                        width: 100%;
+                        transition: .75s cubic-bezier(1, -0.5, 0.25, 1.42);
+                    }
+                }
+            }
+
+            .wrapper {
+                transition: .33s cubic-bezier(1, -0.5, 0.25, 1.42);
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 0;
+                    height: 5px;
+                    background-color: gold;
+                    transition: .33s cubic-bezier(1, -0.5, 0.25, 1.42);
+                }
+            }
+        }
+    }
+
+    .buttons {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+
+        button {
+            width: 100%;
+        }
+    }
+}

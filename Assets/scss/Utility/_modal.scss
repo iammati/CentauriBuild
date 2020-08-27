@@ -1,0 +1,57 @@
+.modal {
+    opacity: 1 !important;
+    transition: .75s cubic-bezier(1, -.1, 0, 1.15) !important;
+
+    &.layout-default {
+        .modal-dialog {
+            top: 30px;
+        }
+    }
+
+    &.hide {
+        .modal-dialog {
+            transform: scale(0) !important;
+            opacity: 0 !important;
+        }
+    }
+
+    &.show {
+        background: rgba(0, 0, 0, .5);
+
+        .modal-dialog {
+            transform: scale(1) !important;
+            opacity: 1 !important;
+        }
+    }
+
+    .modal-dialog {
+        top: calc(50% - 120px);
+        min-height: 215px;
+        transform: scale(.8) !important;
+        transition: .75s cubic-bezier(1, -.1, 0, 1.15) !important;
+
+        .modal-content {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+            border-radius: 0 !important;
+            border: 0 !important;
+
+            .modal-body {
+                .ci-field {
+                    .ci-textarea {
+                        & + label {
+                            transform: translateY(-25px) scale(.8);
+                        }
+                    }
+                }
+            }
+
+            .modal-footer {
+                overflow: hidden;
+            }
+        }
+    }
+
+    .ci-field {
+
+    }
+}
