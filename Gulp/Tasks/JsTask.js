@@ -18,8 +18,6 @@ module.exports = class JsTask extends DefaultTask
     build = () => {
         this.clean();
 
-        let unix = this.action("css-rev");
-
         return this.Gulp.src(
             Array.prototype.concat(
                 this.GulpInstance.getNodeModules(),
@@ -29,7 +27,6 @@ module.exports = class JsTask extends DefaultTask
         )
 
         .pipe(this.action("js-concat"))
-        .pipe(this.GulpInstance.rename(this.GulpInstance.getSource("fileName", "-" + unix + ".js")))
         .pipe(this.action("js-dest"));
     }
 

@@ -2,10 +2,10 @@ CentauriJS.Utilities.Form.Colorpicker = (additionalConfig = {}) => {
     let el = ".color-picker";
 
     let $input = $(el).next("input");
-    let colorValue = $input.val();
-
-    if(colorValue.length == 0) {
-        colorValue = "#000";
+    let colorValue = "#000";
+    
+    if(Centauri.elExists($input)) {
+        colorValue = $input.val();
     }
 
     let config = {

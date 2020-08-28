@@ -29,8 +29,6 @@ module.exports = class ScssTask extends DefaultTask
     build = () => {
         this.clean();
 
-        let unix = this.action("css-rev");
-
         return this.Gulp.src(
             this.GulpInstance.getSource("input", "scss/main.scss")
         )
@@ -38,7 +36,6 @@ module.exports = class ScssTask extends DefaultTask
         .pipe(this.action("sass", this.buildSassOpts))
         .pipe(this.action("sass-concat"))
         .pipe(this.action("sass-minify"), this.buildSassOpts)
-        .pipe(this.GulpInstance.rename(this.GulpInstance.getSource("fileName", "-" + unix + ".css")))
         .pipe(this.action("sass-dest"));
     }
 

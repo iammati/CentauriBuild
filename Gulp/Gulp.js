@@ -15,6 +15,8 @@ module.exports = class Gulp
         this.rev = require("gulp-rev");
         this.del = require("del");
         this.rename = require("gulp-rename");
+        this.through = require("through2");
+        this.childProcess = require("child_process");
 
         this.sources = [];
 
