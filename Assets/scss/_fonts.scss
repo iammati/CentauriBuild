@@ -6,6 +6,10 @@ h1,h2,h3,h4,h5,h6,p,span,label,input,textarea,td,small,
     font-family: Raleway, sans-serif;
 }
 
+.font-raleway {
+    font-family: Raleway, sans-serif !important;
+}
+
 /** Font: fatfrank */
 /*
  * The Typekit service used to deliver this font or fonts for use on websites
@@ -28,4 +32,8 @@ h1,h2,h3,h4,h5,h6,p,span,label,input,textarea,td,small,
     font-display: auto;
     font-style: normal;
     font-weight: 400;
+}
+
+.font-fatfrank {
+    font-family: fatfrank, sans-serif !important;
 }

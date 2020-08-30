@@ -23,12 +23,13 @@ Centauri.Events.OnModuleLoadEvent.Domains.RegisterActions = () => {
                     "findById",
 
                     {
-                        id: id.toLowerCase()
+                        id: id
                     },
 
                     {
                         success: (data) => {
                             data = JSON.parse(data);
+                            let domainData = data;
 
                             Centauri.fn.Ajax(
                                 "Page",
@@ -79,15 +80,27 @@ Centauri.Events.OnModuleLoadEvent.Domains.RegisterActions = () => {
                                                     id: "pageTitlePrefix",
                                                     label: "Page-Title Prefix",
                                                     type: "text",
-                                                    value: data.pageTitlePrefix
+                                                    value: domainData.pageTitlePrefix
                                                 },
 
                                                 {
                                                     id: "pageNotFound",
                                                     label: "404 UID",
                                                     type: "text",
-                                                    value: data.pageNotFound,
+                                                    value: domainData.pageNotFound,
                                                     required: true
+                                                },
+
+                                                {
+                                                    id: "ssl",
+                                                    label: "SSL",
+                                                    type: "custom",
+                                                    custom: "switch",
+
+                                                    data: {
+                                                        label: "SSL",
+                                                        isChecked: domainData.ssl
+                                                    }
                                                 }
                                             ],
 

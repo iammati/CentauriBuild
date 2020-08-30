@@ -1,0 +1,83 @@
+$enable-responsive-font-sizes: true;
+
+.justify-content-space-between {
+    justify-content: space-between;
+}
+
+.flex-centration {
+    &:not(.d-flex) {
+        display: flex;
+    }
+
+    &.flex-ai-center {
+        align-items: center;
+    }
+
+    &.flex-jc-center {
+        justify-content: center;
+    }
+}
+
+.flex-centration-childs {
+    display: flex !important;
+
+    & > * {
+        display: flex !important;
+    }
+
+    &.flex-ai-center-childs {
+        align-items: center;
+
+        & > * {
+            align-items: center !important;
+        }
+    }
+
+    &.flex-jc-center-childs {
+        justify-content: center;
+
+        & > * {
+            justify-content: center !important;
+        }
+    }
+}
+
+.list-unstyled {
+    margin-bottom: 0;
+}
+
+.btn {
+    text-decoration: none !important;
+
+    &.btn-hotpink {
+        background: hotpink;
+        
+        &:hover {
+            background: #ff3399;
+        }
+
+        &:active {
+            background-color: #ff4fa7;
+
+            &:focus {
+                box-shadow: 0 0 0 .2rem #ff6bb5;
+            }
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 .2rem hotpink;
+        }
+    }
+}
+
+.br-0 {
+    border-radius: 0 !important;
+}
+
+.h-100-childs {
+    height: 100% !important;
+
+    & > * {
+        height: 100% !important;
+    }
+}

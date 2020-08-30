@@ -198,4 +198,11 @@ function CentauriCoreFunctions() {
     Centauri.inArray = (item, array) => {
         return (!!~$.inArray(item, array));
     };
+
+    /**
+     * Function which checks whether the current pathname equals to the installation mode.
+     * 
+     * @return {boolean}
+     */
+    Centauri.isInstalling = () => (Centauri.strContains(location.pathname, "centauri/install", true));
 }
