@@ -27,7 +27,11 @@ module.exports = class DefaultTask
                 if(action == "terser") {
                     return this.GulpInstance.terser({
                         mangle: {
-                            toplevel: true
+                            toplevel: true,
+
+                            reserved: [
+                                "Centauri"
+                            ]
                         }
                     }).on("error", (error) => this.emit("end"));
                 }

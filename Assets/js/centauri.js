@@ -64,7 +64,7 @@ Centauri.load = () => {
      * Condition whether CentauriEnv is defined - since it's for each environment maybe necessary, maybe not - therefor this condition
      * to handle it properly in case CentauriEnv does not exists.
      */
-    if(Centauri.isNotUndefined(CentauriEnv)) {
+    if(typeof CentauriEnv == "function") {
         CentauriEnv();
     }
 
