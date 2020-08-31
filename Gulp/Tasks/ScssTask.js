@@ -50,7 +50,7 @@ module.exports = class ScssTask extends DefaultTask
 
         .pipe(this.action("sass", this.deploySassOpts))
         .pipe(this.action("sass-concat"))
-        .pipe(this.action("sass-minify"), this.buildSassOpts)
+        .pipe(this.action("sass-minify"), this.deploySassOpts)
         .pipe(this.GulpInstance.rename(this.GulpInstance.getSource("fileName", "-" + unix + ".css")))
         .pipe(this.action("sass-dest"));
     }
