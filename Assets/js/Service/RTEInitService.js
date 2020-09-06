@@ -222,12 +222,4 @@ Centauri.Service.RTEInitService = () => {
 
 		i++;
 	});
-
-	$(".ql-editor *").each(function() {
-		let color = $(this).css("color");
-
-		if(color == "#fff" || color == "#ffffff" || color == "white" || color == "rgb(255, 255, 255)") {
-			$(this).css("text-shadow", "0px 1px 5px black");
-		}
-	});
 };

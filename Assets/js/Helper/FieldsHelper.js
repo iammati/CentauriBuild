@@ -55,7 +55,7 @@ Centauri.Helper.FieldsHelper.findDatasBySelectors = (selectors) => {
 
                 /** Handling for specific elements (by checking their classes) the correct way of fetching its current/changed value */
                 if($(this).hasClass("ci-textarea")) {
-                    val = $(this).html();
+                    val = $("> .ql-editor", $(this)).html();
                 }
                 if($(this).is("textarea")) {
                     val = $(this).val();
