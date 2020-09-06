@@ -73,7 +73,7 @@ Centauri.Events.OnModuleLoadEvent.Domains = () => {
 
                             Centauri.NewModel();
 
-                            Centauri.Service.CKEditorInitService();
+                            Centauri.Service.RTEInitService();
                         }
                     }
                 );

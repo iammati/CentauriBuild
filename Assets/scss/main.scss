@@ -1,12 +1,13 @@
 /**
- * Root-Libs
+ * Root-Libs.
  * 
- * Toastr (customized),
- * Bootstrap v4.1.3,
- * FontAwesome v5.12.0,
- * cropperjs v1.0.1
- * Waves 1.0.1
- * pickr 1.6.0
+ * Toastr (customized) - Notifications
+ * Bootstrap v4.1.3, - Grids and such
+ * FontAwesome v5.12.0, - Icons
+ * cropperjs v1.0.1 - Cropper for Images
+ * Waves 1.0.1 - Fancy Waves-Effect on buttons
+ * pickr 1.6.0 - ColorPicker
+ * Quill 1.3.6 - RTE
  */
 @import "../../Packages/toastr/toastr";
 @import "../../Packages/bootstrap/scss/mixins";
@@ -15,10 +16,12 @@
 @import "../../Packages/bootstrap/dist/css/bootstrap.min.css";
 @import "../../Packages/waves/dist/waves.min.css";
 @import "../../Packages/pickr/dist/themes/classic.min.css";
+@import "../../Packages/pickr/dist/themes/nano.min.css";
 @import "../../Packages/fontawesome5.12.0/css/fontawesome.min.css";
 @import "../../Packages/fontawesome5.12.0/css/solid.min.css";
 @import "../../Packages/fontawesome5.12.0/css/brands.min.css";
 @import "../../Packages/cropperjs/dist/cropper.min.css";
+@import "../../Packages/quill/css/themes/quill.snow.css";
 
 /**
  * Extended- & Centauri-Bootstrap

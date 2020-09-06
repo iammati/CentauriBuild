@@ -104,8 +104,8 @@ Centauri.Helper.FindFieldsByUidHelper = ($contentelement, $editBtnElement) => {
                 CentauriJS.Utilities.Form.Select();
                 CentauriJS.Utilities.Form.FieldHasValueUtility();
 
-                /** Initializing CKEditor 5 */
-                Centauri.Service.CKEditorInitService();
+                /* Initializing RTE */
+                Centauri.Service.RTEInitService();
 
                 /** Initializing ColorPickers */
                 CentauriJS.Utilities.Form.Colorpicker();

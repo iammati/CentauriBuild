@@ -89,7 +89,7 @@ Centauri.Events.OnModuleLoadEvent.Models.RegisterActions = () => {
 
                                                             Centauri.View.ContentElementsView();
                                                             Centauri.Components.CreateNewInlineComponent();
-                                                            Centauri.Service.CKEditorInitService();
+                                                            Centauri.Service.RTEInitService();
                                                             Centauri.Listener.DocumentKeyUpListener();
 
                                                             $(".spinner-grow", $this).remove();

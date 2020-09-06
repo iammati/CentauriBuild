@@ -33,9 +33,9 @@ Centauri.Helper.findByPidHelper = (pid, $container = $("#pagecontent"), rootpage
                 Centauri.NewContentElementModal($container);
 
                 /**
-                 * Initializing CKEditor 5
+                 * Initializing RTE
                  */
-                Centauri.Service.CKEditorInitService();
+                Centauri.Service.RTEInitService();
 
                 /**
                  * Initializing AccordionComponent for InlineRecords this element may has

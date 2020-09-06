@@ -104,9 +104,9 @@ Centauri.NewContentElementModal = ($container) => {
                         );
 
                         /**
-                         * Initializing CKEditor 5
+                 * Initializing RTE
                          */
-                        Centauri.Service.CKEditorInitService();
+                        Centauri.Service.RTEInitService();
 
                         $(".element .top").off("click");
 

@@ -75,7 +75,7 @@ Centauri.Events.OnModuleLoadEvent.Models = () => {
 
                             Centauri.NewModel();
 
-                            Centauri.Service.CKEditorInitService();
+                            Centauri.Service.RTEInitService();
                         }
                     }
                 );

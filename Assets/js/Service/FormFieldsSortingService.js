@@ -99,7 +99,7 @@ Centauri.Service.FormFieldsSortingService = () => {
             }
         });
 
-        Centauri.Service.CKEditorInitService();
+        Centauri.Service.RTEInitService();
 
         CentauriJS.Utilities.Form.FieldHasValueUtility();
 

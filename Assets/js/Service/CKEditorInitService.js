@@ -1,111 +1,233 @@
-Centauri.Service.CKEditorInitService = () => {
-	console.log("CKEDITORINITSERVICE: @todo CUSTOM CKEDITOR?");
+Centauri.Service.RTEInitService = () => {
+	$("body > .pcr-app").remove();
 
-	/*
-    if(!!$(".ck.ck-reset_all.ck-body.ck-rounded-corners").length) {
-        $(".ck.ck-reset_all.ck-body.ck-rounded-corners").remove();
-	}
+	Centauri.Service.RTEInitService.COLOR_SAVING = null;
 
-	let $textareas = $(".ci-textarea");
-	$textareas.each(function() {
-		if(!$(this).hasClass("rte-initialized")) {
-			$(this).addClass("rte-initialized");
+	Centauri.Service.RTEInitService.toolbarOptions = [
+		/** H-Tags and Font-Sizes */
+		[
+			{
+				"header": [
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					false
+				]
+			}
+		],
 
-			let textareaNode = $(this).get(0);
+		[
+			{
+				"size": [
+					"small",
+					false,
+					"large",
+					"huge"
+				]
+			}
+		],
 
-			let html = $(this).attr("data-html");
-			let parseJson = $(this).attr("data-parsejson");
+		/** Default Formatting-Buttons */
+		[
+			"bold",
+			"italic",
+			"underline",
+			"strike"
+		],
 
-			if(Centauri.isUndefined(parseJson)) {
-				if(Centauri.isNotUndefined(html)) {
-					html = JSON.parse(html);
+
+		[
+			"blockquote",
+			"code-block"
+		],
+
+
+		/** Custom Button Values */
+		[
+			{
+				"header": 1
+			},
+
+			{
+				"header": 2
+			}
+		],
+
+		[
+			{
+				"list": "ordered"
+			},
+
+			{
+				"list": "bullet"
+			}
+		],
+
+
+		/** Superscript / Subscript */
+		[
+			{
+				"script": "sub"
+			},
+
+			{
+				"script": "super"
+			}
+		],
+
+
+		/** Outdent / Indent */
+		[
+			{
+				"indent": "-1"
+			},
+
+			{
+				"indent": "+1"
+			}
+		],
+
+
+		/** Text Direction */
+		[
+			{
+				"direction": "rtl"
+			}
+		],
+
+
+		/** Dropdown with defaults from theme */
+		[
+			{
+				"color": [
+					"color-picker"
+				]
+			},
+
+			{
+				"background": [
+					"color-picker"
+				]
+			}
+		],
+
+		[
+			{
+				"font": []
+			}
+		],
+
+		[
+			{
+				"align": [
+					"",
+					"center",
+					"right",
+					"justify"
+				]
+			}
+		],
+
+
+		/** Remove-Formatting Button */
+		[
+			"clean"
+		]
+	];
+
+	Centauri.Service.RTEInitService.rteEditorInstances = [];
+
+	$(".ci-textarea").each(function(index, value) {
+		$this = $(this);
+
+		let html = $(this).data("html");
+		$(this).html(JSON.parse(html));
+
+		var editorInstance = new Quill(".ci-textarea:not(.ql-container)", {
+			modules: {
+				toolbar: Centauri.Service.RTEInitService.toolbarOptions
+			},
+
+			theme: "snow"
+		});
+
+		Centauri.Service.RTEInitService.rteEditorInstances[index] = {
+			quill: editorInstance,
+			pickr: null
+		};
+	});
+
+	$(".ql-color .ql-picker-options, .ql-background .ql-picker-options").hide();
+
+	$.each(Centauri.Service.RTEInitService.rteEditorInstances, function(index, instance) {
+		/** Initialization of Color-Pickr */
+		var pickrSelector = "rte-color-picker-" + index;
+		$("body").append("<div id='" + pickrSelector + "'></div>");
+
+		Centauri.Service.RTEInitService.rteEditorInstances[index]["pickr"] = Pickr.create({
+			el: "#" + pickrSelector,
+			theme: "nano",
+
+			components: {
+				/** Main components */
+				preview: true,
+				opacity: true,
+				hue: true,
+
+				/** Input / output Options */
+				interaction: {
+					hex: true,
+					rgba: true,
+					hsla: true,
+					hsva: true,
+					cmyk: true,
+					input: true,
+					clear: true,
+					save: true
 				}
 			}
+		});
 
-			DecoupledDocumentEditor.create(textareaNode, {
-				language: "en",
+		Centauri.Service.RTEInitService.rteEditorInstances[index]["pickr"].on("save", (colorObj, pickrInstance) => {
+			Centauri.Service.RTEInitService.rteEditorInstances[index]["quill"].format(Centauri.Service.RTEInitService.COLOR_SAVING, colorObj.toHEXA());
 
-                toolbar: {
-					items: [
-						"heading",
-						"|",
-						"fontSize",
-						"fontFamily",
-						"fontColor",
-						"fontBackgroundColor",
-						"|",
-						"bold",
-						"italic",
-						"underline",
-						"strikethrough",
-						"removeFormat",
-						"highlight",
-						"|",
-						"alignment",
-						"pageBreak",
-						"|",
-						"numberedList",
-						"bulletedList",
-						"|",
-						"indent",
-						"outdent",
-						"|",
-						"todoList",
-						"link",
-						"blockQuote",
-						"imageUpload",
-						"insertTable",
-						"mediaEmbed",
-						"|",
-						"undo",
-						"redo"
-					]
-				},
+			Centauri.Service.RTEInitService.rteEditorInstances[index]["pickr"].hide();
+		});
 
-                heading: {
-                    options: [
-                        { model: "paragraph", title: 'Paragraph', class: 'ck-heading_paragraph' },
-                        { model: "heading1", view: "h1", title: "Heading 1", class: "ck-heading_heading1" },
-                        { model: "heading2", view: "h2", title: "Heading 2", class: "ck-heading_heading2" },
-                        { model: "heading3", view: "h3", title: "Heading 3", class: "ck-heading_heading3" },
-                        { model: "heading4", view: "h4", title: "Heading 4", class: "ck-heading_heading4" },
-                    ]
-                },
 
-				image: {
-					toolbar: [
-						"imageTextAlternative",
-						"imageStyle:full",
-						"imageStyle:side"
-					]
-				},
+		$(".ql-color.ql-picker.ql-color-picker, .ql-background.ql-picker.ql-color-picker").off("click");
+		$(".ql-color.ql-picker.ql-color-picker, .ql-background.ql-picker.ql-color-picker").on("click", this, function(e) {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			e.stopPropagation();
 
-				table: {
-					contentToolbar: [
-						"tableColumn",
-						"tableRow",
-						"mergeTableCells"
-					]
-				},
+			if($(this).hasClass("ql-background")) {
+				Centauri.Service.RTEInitService.COLOR_SAVING = "background";
+			} else {
+				Centauri.Service.RTEInitService.COLOR_SAVING = "color";
+			}
 
-				licenseKey: ""
-			})
-            .then(editor => {
-                window.editor = editor;
+			$(this).parent().find(".pickr button").trigger("click");
 
-                const viewFragment = editor.data.processor.toView(html);
-				const modelFragment = editor.data.toModel(viewFragment);
-				
-                editor.model.insertContent(modelFragment);
+			return false;
+		});
+	});
 
-				// Set a custom container for the toolbar.
-                $(this).parent().find(".document-editor__toolbar").append(editor.ui.view.toolbar.element);
-                $(this).parent().find(".ck-toolbar").addClass("ck-reset_all");
-			})
-            .catch(error => {
-                console.error(error);
-            });
+	var i = 0;
+	$("body > div.pickr").each(function() {
+		$(this).prependTo($(".ql-toolbar").eq(i).find(".ql-formats:nth-child(10)"));
+
+		i++;
+	});
+
+	$(".ql-editor *").each(function() {
+		let color = $(this).css("color");
+
+		if(color == "#fff" || color == "#ffffff" || color == "white" || color == "rgb(255, 255, 255)") {
+			$(this).css("text-shadow", "0px 1px 5px black");
 		}
 	});
-	*/
 };

@@ -25,6 +25,7 @@ GulpInstance.addPackage("waves/dist/waves.min.js");
 GulpInstance.addPackage("jquery-cropper/dist/jquery-cropper.js");
 GulpInstance.addPackage("cropperjs/dist/cropper.min.js");
 GulpInstance.addPackage("pickr/dist/pickr.min.js");
+GulpInstance.addPackage("quill/js/quill.js");
 
 GulpInstance.revInBuildMode = false;
 
@@ -54,7 +55,7 @@ gulp.task("sync:packages", MainTask.call("packages"));
  * Watch-Task Configuration - Build and Deploy.
  */
 gulp.task("watch:build:task", () => {
-	gulp.watch(GulpInstance.getSource("input", "scss/main.scss"), gulp.series("css:build"));
+	gulp.watch(GulpInstance.getSource("input", "scss/**/*.{sass,scss}"), gulp.series("css:build"));
 	gulp.watch(GulpInstance.getSource("input", "js/**/*.js"), gulp.series("js:build"));
 });
 
