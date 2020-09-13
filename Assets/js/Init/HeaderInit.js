@@ -1,12 +1,19 @@
 Centauri.Init.HeaderInit = () => {
-    if(!Centauri.Init.HeaderInit.Initialized) {
-        Centauri.Init.HeaderInit.Initialized = true;
+    /** Initializing Dropdowns-Component (Button-Dropdown in header) */
+    Centauri.Components.DropdownsComponent();
 
-        /**
-         * Initializing Dropdowns-Component (Button-Dropdown in header)
-         */
-        Centauri.Components.DropdownsComponent();
-    }
+    $("#header nav .has-dropdown button").each(function() {
+        let $this = $(this);
+
+        $this.on("click", this, function() {
+            let id = $this.attr("id");
+
+            if(Centauri.isNotUndefined(id)) {
+                Centauri.Components.ModulesComponent({
+                    type: "load",
+                    module: id
+                });
+            }
+        });
+    });
 };
-
-Centauri.Init.HeaderInit.Initialized = false;

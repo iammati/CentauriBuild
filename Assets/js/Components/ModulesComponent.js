@@ -3,8 +3,8 @@ Centauri.Components.ModulesComponent = (data) => {
         $("#dashboard #modules .module").each(function() {
             $module = $(this);
 
-            $module.on("click", function() {
-                var $thismodule = $(this);
+            $module.on("click", this, function() {
+                let $thismodule = $(this);
 
                 if(Centauri.Components.EditorComponent("isOpen")) {
                     Centauri.fn.Modal(
@@ -53,9 +53,11 @@ Centauri.Components.ModulesComponent = (data) => {
                     $("#dashboard #modules .module[data-module-id='" + Centauri.defaultModule + "']").trigger("click");
                 }
             }
+
+            Centauri.Events.OnModuleLoadEvent(Centauri.defaultModule);
         }, 333);
 
-        $("#dashboard #user i").on("click", function() {
+        $("#dashboard #user i").on("click", this, function() {
             $("#dashboard #user").toggleClass("active");
             $("#dashboard #user .dropdown-view").slideToggle();
         });

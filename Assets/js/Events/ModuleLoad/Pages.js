@@ -72,9 +72,9 @@ Centauri.Events.OnModuleLoadEvent.Pages = () => {
     /**
      * Module:pages Buttons
      */
-    $("#pagemodule_buttons button").off("click");
+    $("#module_buttons button").off("click");
 
-    $("#pagemodule_buttons button").each(function() {
+    $("#module_buttons button").each(function() {
         $button = $(this);
 
         $button.on("click", this, function() {

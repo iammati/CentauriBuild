@@ -1,0 +1,9 @@
+#module_be_users {
+    .be-users-row {
+        button {
+            &[data-role="admin"] {
+                // 
+            }
+        }
+    }
+}

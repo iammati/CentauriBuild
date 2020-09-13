@@ -21,12 +21,10 @@ Centauri.DAPLoader = () => {
 
         Centauri.DAPLoader.historyPushState = false;
 
-        Centauri.Components.ModulesComponent(
-            {
-                type: "load",
-                module: moduleid
-            }
-        );
+        Centauri.Components.ModulesComponent({
+            type: "load",
+            module: moduleid
+        });
     };
 };
 

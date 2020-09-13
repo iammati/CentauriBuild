@@ -1,5 +1,7 @@
 Centauri.Events.EditorComponent = {};
 
+Centauri.Events.EditorComponent.Callbacks = {};
+
 Centauri.Events.EditorComponent.Helpers = {};
 
 

@@ -1,5 +1,5 @@
 Centauri.Events.OnModuleLoadEvent.Models = () => {
-    $("#modelsmodule_buttons button").each(function() {
+    $("#module_buttons button").each(function() {
         $button = $(this);
 
         $button.on("click", this, function() {

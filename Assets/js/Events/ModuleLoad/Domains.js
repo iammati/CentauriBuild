@@ -2,11 +2,11 @@ Centauri.Events.OnModuleLoadEvent.Domains = () => {
     /**
      * Module:domains Buttons
      */
-    $("#domainsmodule_buttons button").each(function() {
+    $("#module_buttons button").each(function() {
         $button = $(this);
 
         $button.on("click", this, function() {
-            var btnType = $(this).data("button-type");
+            let btnType = $(this).data("button-type");
 
             if(btnType == "create") {
                 Centauri.fn.Ajax(

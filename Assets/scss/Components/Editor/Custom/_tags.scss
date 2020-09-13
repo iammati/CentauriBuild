@@ -1,0 +1,25 @@
+#editor {
+    .field,
+    .ci-field {
+        .tags {
+            padding-top: 15px !important;
+
+            & > * {
+                display: inline-block;
+                padding: 0 5px;
+                cursor: pointer;
+
+                &:not(.btn) {
+                    border-radius: 30px;
+                    background-color: #33b5e5;
+                    border: 1px solid #4285f4;
+                    color: white;    
+                }
+
+                i {
+                    padding: 0 5px;
+                }
+            }
+        }
+    }
+}

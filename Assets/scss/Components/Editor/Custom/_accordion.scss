@@ -1,0 +1,20 @@
+#editor {
+    .field {
+        .accordion {
+            position: relative;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border: 1px solid #ced4da;
+
+            .top {
+                cursor: pointer;
+                padding: 0 15px;
+            }
+
+            .bottom {
+                display: none;
+                padding: 0 15px;
+            }
+        }
+    }
+}

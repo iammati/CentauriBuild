@@ -2,6 +2,7 @@ Centauri.Utility.EditorUtility.getCustomHTMLByType = (inputObj) => {
     let html = "";
     let type = inputObj.custom;
     let data = inputObj.data;
+    let additionalHTML = (Centauri.isNotUndefined(data.additionalHTML) ? data.additionalHTML : "");
 
     let fieldClassName = "field";
     let additionalFieldClasses = "";
@@ -71,7 +72,7 @@ Centauri.Utility.EditorUtility.getCustomHTMLByType = (inputObj) => {
             onClick = " onclick='" + data.onClick + "'";
         }
 
-        html = "<label><input type='checkbox'" + checked + " id='" + inputObj.id + "'" + onClick + " /><span></span>" + data.label + "</label>";
+        html = "<label><input type='checkbox'" + checked + " id='" + inputObj.id + "'" + onClick + " /><span></span>" + data.label + "</label>" + additionalHTML;
     }
 
     if(type == "radio") {
@@ -90,6 +91,46 @@ Centauri.Utility.EditorUtility.getCustomHTMLByType = (inputObj) => {
 
     if(type == "textarea") {
         html += "<div class='ci-field'><textarea" + (Centauri.isNotUndefined(data.required) ? (data.required ? " required" : "") : "") + " id='" + inputObj.id + "' class='md-textarea form-control' rows='3'>" + (Centauri.isNotUndefined(data.value) ? data.value : "") + "</textarea><label" + (Centauri.isNotUndefined(data.value) && data.value.length > 0 ? " class='active'" : "") + " for='" + inputObj.id + "'>" + data.label + "</label></div>";
+    }
+
+    if(type == "accordions") {
+        let accordions = data.accordions;
+
+        accordions.forEach(accordion => {
+            html += "<div class='accordion'><div class='top'>" + accordion[data.label] + "</div><div class='bottom'>@todo bottom for accordions.</div></div>";
+        });
+    }
+
+    if(type == "html") {
+        if(Centauri.isNotUndefined(data.label)) {
+            fieldClassName = "ci-field";
+            html += "<label class='active'>" + data.label + "</label><div class='pt-1'>" + data.html + "</div>";
+        } else {
+            html += data.html;
+        }
+    }
+
+    if(type == "tags") {
+        fieldClassName = "ci-field";
+
+        let tags = data.tags;
+        let tagsLabel = data.tagsLabel;
+        let tagType = "btn btn-info p-1 waves-effect";
+
+        html += "<label class='active'>" + data.label + "</label>";
+
+        html += "<div class='tags' id='tags-" + inputObj.id + "'" + (Centauri.isNotUndefined(data.additionalParentData) ? " " + data.additionalParentData : "") + ">";
+        if(Centauri.isNotUndefined(data.tagType)) {
+            tagType = data.tagType;
+        }
+
+        html += "<div class='adder btn btn-primary p-1 waves-effect'><i class='fas fa-pen'></i></div>";
+
+        tags.forEach(tag => {
+            html += "<div class='" + tagType + "' data-" + data.tagValue + "='" + tag[data.tagValue] + "'><span>" + tag[tagsLabel] + "</span></div>";
+        });
+
+        html += "</div>";
     }
 
     return "<div class='" + fieldClassName + "" + additionalFieldClasses + "'" + (Centauri.isNotUndefined(inputObj.extraAttr) ? " " + inputObj.extraAttr : "") + ">" + html + "</div>";

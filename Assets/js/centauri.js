@@ -16,8 +16,8 @@ var Centauri = {};
 Centauri.Env = "Development";
 
 /**
- * Centauri default ModuleID
- * The default one which will be used when logging into the backend
+ * Centauri default ModuleID.
+ * The default one which will be used when logging into the backend.
  */
 Centauri.defaultModule = "dashboard";
 
@@ -46,6 +46,10 @@ Centauri.Listener = {};
 Centauri.Components = {};
 Centauri.Modal = {};
 Centauri.View = {};
+
+Centauri.Callbacks = {};
+Centauri.Callbacks.EditorComponent = {};
+Centauri.Callbacks.EditorComponent.TagsCallbacks = {};
 
 
 /**

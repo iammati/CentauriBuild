@@ -1,5 +1,5 @@
 Centauri.Events.OnModuleLoadEvent.Forms = () => {
-    $("#formsmodule_buttons button").each(function() {
+    $("#module_buttons button").each(function() {
         let $button = $(this);
 
         $button.on("click", this, function() {

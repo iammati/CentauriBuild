@@ -1,7 +1,24 @@
 Centauri.Components.EditorComponent = (type, data) => {
+    let lastOpenedId = Centauri.Components.EditorComponent.LastOpenedId;
+    let isSameAsLastOpened = false;
+
+    if(Centauri.isNotUndefined(data) && (Centauri.isNotUndefined(data.title))) {
+        if(lastOpenedId == data.title) {
+            isSameAsLastOpened = true;
+        }
+
+        Centauri.Components.EditorComponent.LastOpenedId = data.title;
+    }
+
     $editor = $("#editor");
 
     if(type == "show") {
+        if(!isSameAsLastOpened) {
+            Centauri.Components.EditorComponent("clear", {
+                forceClear: true
+            });
+        }
+
         Centauri.Helper.VariablesHelper.__EditorComponentIsOpen = true;
         Centauri.Components.EditorComponent.FormData = null;
         Centauri.Components.EditorComponent.ButtonsInitialized = false;
@@ -46,6 +63,8 @@ Centauri.Components.EditorComponent = (type, data) => {
                     $(".bottom", $editor).empty().append(data.html);
                 }
 
+                Centauri.Events.EditorComponent.Callbacks.HtmlAppended();
+
                 if(Centauri.isNotUndefined(data.callbacks.htmlAppended)) {
                     data.callbacks.htmlAppended();
                 }
@@ -63,13 +82,11 @@ Centauri.Components.EditorComponent = (type, data) => {
                     $.each(data.tabs, function(index, tab) {
                         let tabPaneId = "editorcomponent-tab-" + tabI;
 
-                        let tabLiAClass = "nav-link";
                         let tabPaneClass = "tab-pane fade show";
                         let isActive = false;
 
                         if(tabI == 0) {
                             tabPaneClass += " active";
-                            // tabLiAClass += " active";
                             isActive = true;
                         }
 
@@ -94,13 +111,15 @@ Centauri.Components.EditorComponent = (type, data) => {
                     $(".bottom > form", $editor).append(tabHTML);
 
                     CentauriJS.Components.TabComponent();
-                    Centauri.Components.EditorComponent.CBsAfterFormRendered(".field");
+                    Centauri.Components.EditorComponent.CBsAfterFormRendered(".field", data.callbacks);
                 } else {
                     if(Centauri.isNotUndefined(data.form)) {
                         Centauri.Components.EditorComponent.GetHTMLByFormArray(data.form, data);
-                        Centauri.Components.EditorComponent.CBsAfterFormRendered();
+                        Centauri.Components.EditorComponent.CBsAfterFormRendered("form", data.callbacks);
                     }
                 }
+
+                Centauri.Events.EditorComponent.Callbacks.HtmlAppended();
             }
         }
 
@@ -191,7 +210,8 @@ Centauri.Components.EditorComponent = (type, data) => {
         }
 
         $editor.addClass("active");
-        setTimeout(function() {
+
+        setTimeout(() => {
             $(".overlayer").removeClass("hidden");
             $(".overlayer").attr("data-closer", "EditorComponent");
 
@@ -350,11 +370,15 @@ Centauri.Components.EditorComponent.GetHTMLByFormArray = (form, data, formSelect
     return formHTML;
 };
 
-Centauri.Components.EditorComponent.CBsAfterFormRendered = (formSelector = "form") => {
+Centauri.Components.EditorComponent.CBsAfterFormRendered = (formSelector = "form", callbacks) => {
     CentauriJS.Utilities.Form.Select();
     CentauriJS.Utilities.Form.FieldHasValueUtility();
     Centauri.Utility.EditorUtility.Validator();
     Centauri.Listener.EditorListener();
+
+    if(Centauri.isNotUndefined(callbacks.htmlAppended)) {
+        callbacks.htmlAppended();
+    }
 };
 
 Centauri.Components.EditorComponent.init = () => {
@@ -383,6 +407,7 @@ Centauri.Components.EditorComponent.Container = "undefined";
 Centauri.Components.EditorComponent.ButtonsInitialized = false;
 Centauri.Components.EditorComponent.ClearOnClose = true;
 Centauri.Components.EditorComponent.FormData = null;
+Centauri.Components.EditorComponent.LastOpenedId = null;
 
 /**
  * Variables declared for and as helper

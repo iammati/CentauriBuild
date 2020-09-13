@@ -10,6 +10,8 @@ Centauri.Utility.ModalUtility = (title, description, options, callbacks) => {
     let isDialog = true;
     let closeOnSave = true;
     let cached = true;
+    let search = false;
+    let layout = "";
 
     if(Centauri.isNotUndefined(options)) {
         if(Centauri.isNotUndefined(options.id)) {
@@ -41,6 +43,14 @@ Centauri.Utility.ModalUtility = (title, description, options, callbacks) => {
                 saveclass = options.save.class;
             }
         }
+
+        if(Centauri.isNotUndefined(options.search)) {
+            search = options.search;
+        }
+
+        if(Centauri.isNotUndefined(options.layout)) {
+            layout = " layout-" + options.layout;
+        }
     }
 
     let _showingCached = false;
@@ -55,13 +65,18 @@ Centauri.Utility.ModalUtility = (title, description, options, callbacks) => {
         }
     }
 
-    html = "<div class='modal fade" + (!isDialog ? " layout-default" : "") + "' id='modal" + id + "' tabindex='-1' role='dialog' aria-labelledby='modal" + id + "-label' aria-hidden='true'>|</div>";
+    html = "<div class='modal fade" + (!isDialog ? " layout-default" : layout) + "' id='modal" + id + "' tabindex='-1' role='dialog' aria-labelledby='modal" + id + "-label' aria-hidden='true'>|</div>";
     html = addHTMLFn(html, "<div class='modal-dialog" + modalSize + "' role='document'>|</div>");
     html = addHTMLFn(html, "<div class='modal-content'>|</div>");
     html = addHTMLFn(html, "<div class='modal-header'>|</div>&&");
-    html = addHTMLFn(html, "<h5 class='modal-title' id='modallabel'>" + title + "</h5>|");
+    html = addHTMLFn(html, "<h5 class='modal-title' id='modallabel'>" + title + "</h5>|");    
     html = addHTMLFn(html, "<button type='button' class='close' data-type='close' aria-label='Close'>|</button>");
     html = addHTMLFn(html, "<span aria-hidden='true'>&times;</span>");
+
+    if(search) {
+        html = addHTMLFn(html, "<div class='px-3'><div class='ci-field mb-0'><input class='form-control' id='modal_search' /><label for='modal_search'>Search</label></div></div>&&", "&&");
+    }
+
     html = addHTMLFn(html, "<div class='modal-body'>" + description + "</div>&&", "&&");
     html = addHTMLFn(html, "<div class='modal-footer'>|</div>", "&&");
     html = addHTMLFn(html, "<button type='button' data-type='save' class='btn btn-" + saveclass + " waves-effect waves-light mr-3'>" + options.save.label + "</button>&&");
@@ -71,6 +86,32 @@ Centauri.Utility.ModalUtility = (title, description, options, callbacks) => {
         $("body").append(html);
         Centauri.Modal();
         CentauriJS.Utilities.Form.FieldHasValueUtility();
+
+        if(search) {
+            let events = [
+                "keyup",
+                "keydown"
+            ];
+
+            events.forEach(evt => {
+                $("#modal_search").on(evt, this, function() {
+                    let val = $(this).val();
+                    let length = val.length;
+
+                    $(".modal .modal-body .field").show();
+
+                    if(length != 0) {
+                        $(".modal .modal-body .field").each(function() {
+                            let text = $.trim($(this).text());
+
+                            if(!text.startsWith(val)) {
+                                $(this).hide();
+                            }
+                        });
+                    }
+                });
+            });
+        }
     }
 
     if(Centauri.isNotUndefined(callbacks)) {
@@ -120,9 +161,7 @@ Centauri.Utility.ModalUtility = (title, description, options, callbacks) => {
         }
     });
 
-    /**
-     * Giving form fields (e.g. input, selects etc.) unique id & for attributes
-     */
+    /** Giving form fields (e.g. input, selects etc.) unique id & for attributes */
     Centauri.fn.__FormInputFix();
 
     return true;

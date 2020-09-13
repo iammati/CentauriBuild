@@ -3,7 +3,7 @@ Centauri.Events.OnModuleLoadEvent.Languages = () => {
         $(".actions .action[data-action='language-edit']", $(this)).trigger("click");
     });
 
-    $("#languagemodule_buttons button").each(function() {
+    $("#module_buttons button").each(function() {
         $button = $(this);
 
         $button.on("click", this, function() {

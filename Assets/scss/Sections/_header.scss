@@ -29,5 +29,13 @@ section {
                 }
             }
         }
+
+        button {
+            transition: .3s;
+
+            &[active] {
+                background-color: #33b5e5 !important;
+            }
+        }
     }
 }
